@@ -174,7 +174,7 @@ html, body { margin: 0; background: #F7F5F0; color: #1B2430; font-family: var(--
     <button id="tab-statewide" role="tab" aria-selected="true">Statewide and U.S. Senate</button>
     <button id="tab-senate" role="tab" aria-selected="false">Texas Senate</button>
     <button id="tab-house" role="tab" aria-selected="false">Texas House</button>
-    <button id="tab-ev" role="tab" aria-selected="false">Early vote and mail</button>
+    <button id="tab-ev" role="tab" aria-selected="false">Early Vote &amp; Mail</button>
   </nav>
 
   <div class="tx-page" id="page-statewide" role="tabpanel">
@@ -419,6 +419,12 @@ dash.calc('chamber_house', {
   let current = 'statewide';
   const show = (name) => { current = name; for (const k in pages) { pages[k].hidden = k !== name; tabs[k].setAttribute('aria-selected', String(k === name)); } dash.setLink(name); draw(); };
   for (const k in tabs) tabs[k].addEventListener('click', () => show(k));
+  // until Election Day (3 Nov 2026, Central), the early vote tab comes first and opens by default
+  if (Date.now() < Date.parse('2026-11-03T06:00:00Z')) {
+    tabs.ev.parentNode.insertBefore(tabs.ev, tabs.statewide);
+    current = 'ev';
+    for (const k in pages) { pages[k].hidden = k !== 'ev'; tabs[k].setAttribute('aria-selected', String(k === 'ev')); }
+  }
 
   const filt = { contested: false, open: false, close: false, q: '' };
   let evq = ''; let evMode = 'cum'; let evDay = null;
