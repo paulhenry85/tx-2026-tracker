@@ -446,7 +446,10 @@ dash.calc('chamber_house', {
     // 2026 statewide by day
     const days26 = (dd.status === 'ok' ? dd.data : []).filter((r) => r.total != null).map((r) => ({ day: Number(r.day), date: r.date, in_person: Number(r.in_person) || 0, mail: Number(r.mail) || 0, total: Number(r.total), partial: !!r.partial, posted: r.counties_posted })).sort((a, b) => a.day - b.day);
     const avail = days26.map((d) => d.day);
-    if (evDay == null || !avail.includes(evDay)) evDay = latestDay && avail.includes(latestDay) ? latestDay : (avail[avail.length - 1] || latestDay);
+    // default to the most recent day that has new ballots counted (skip a day the state has opened but not filled)
+    const withNew = days26.filter((d, i) => i === 0 || d.total > days26[i - 1].total).map((d) => d.day);
+    const newest = withNew.length ? withNew[withNew.length - 1] : (avail[avail.length - 1] || latestDay);
+    if (evDay == null || !avail.includes(evDay)) evDay = newest;
     const D = evDay;
     // day chips
     picker.replaceChildren(el('span', 'lbl', 'Day:'), ...avail.map((dv) => { const r = days26.find((x) => x.day === dv); const b = el('button', null, 'Day ' + dv + ' · ' + new Date(r.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })); b.setAttribute('aria-pressed', String(dv === D)); b.addEventListener('click', () => { evDay = dv; draw(); }); return b; }));
