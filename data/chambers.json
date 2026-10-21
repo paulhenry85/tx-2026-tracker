@@ -1,0 +1,24 @@
+[
+ {
+  "chamber": "House",
+  "total": 150,
+  "majority": 76,
+  "current_r": 87,
+  "current_d": 62,
+  "vacant": 1,
+  "holdover_r": 0,
+  "holdover_d": 0,
+  "note": "HD-93 vacant (Schatzline resigned July 2026); special election for the unexpired term also on 3 Nov. Some reports also list HD-1 vacant after VanDeaver resigned 21 Sept."
+ },
+ {
+  "chamber": "Senate",
+  "total": 31,
+  "majority": 16,
+  "current_r": 19,
+  "current_d": 12,
+  "vacant": 0,
+  "holdover_r": 8,
+  "holdover_d": 7,
+  "note": "16 seats up in 2026; 15 not on the ballot (8 R, 7 D)."
+ }
+]
