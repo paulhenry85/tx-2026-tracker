@@ -1,5 +1,5 @@
 <style>
-/* Texas 2026 tracker: limestone page, Democratic blue, Republican red. Single light look in every theme. */
+/* Texas 2026 tracker: limestone page, Democratic blue, Republican red. Night-sky look in every theme. */
 #dash-root { --dash-gutter: 0; }
 .tx { color-scheme: light;
   --tx-page: #F7F5F0; --tx-ink: #1B2430; --tx-d: #1F5FBF; --tx-r: #C0352B; --tx-o: #7A6F5A;
@@ -30,8 +30,8 @@
 .tx-control .lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .tx-seatbar { position: relative; display: flex; height: 1.1rem; border-radius: 4px; overflow: hidden; background: var(--tx-track); }
 .tx-seatbar span { display: block; height: 100%; }
-.tx-seatbar .dw { background: var(--tx-d); } .tx-seatbar .dl { background: #8FB0E3; }
-.tx-seatbar .rl { background: #E7A39C; margin-left: auto; } .tx-seatbar .rw { background: var(--tx-r); }
+.tx-seatbar .dw { background: var(--tx-d); } .tx-seatbar .dl { background: #3F6DB5; }
+.tx-seatbar .rl { background: #A84A44; margin-left: auto; } .tx-seatbar .rw { background: var(--tx-r); }
 .tx-seatbar .mid { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 2px; background: var(--tx-ink); }
 .tx-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
 .tx-legend i { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 2px; margin-right: 0.3rem; vertical-align: -1px; }
@@ -101,6 +101,42 @@
 @media (max-width: 52rem) { .tx-tbl .wide { display: none; } }
 [data-dash-source-state=refreshing] { opacity: .55; transition: opacity var(--cds-dur-slow); }
 .tx-notes { margin: 4px 0 12px; padding-left: 18px; color: var(--tx-o, #7A6F5A); font-size: 13px; line-height: 1.5; }
+
+/* Night-sky theme */
+.tx { color-scheme: dark;
+  --tx-page: #0A0F24; --tx-ink: #E8ECFF; --tx-d: #6FA8FF; --tx-r: #FF6F61; --tx-o: #AEB8D8;
+  --tx-surface: rgba(18, 26, 58, 0.78); --tx-track: rgba(200, 210, 255, 0.14); --tx-d-tint: rgba(111, 168, 255, 0.16); --tx-r-tint: rgba(255, 111, 97, 0.16); --tx-accent: #F2C46D;
+  --color-fg: #E8ECFF; --color-fg-muted: #9AA6C8; --color-panel: rgba(18, 26, 58, 0.78); --color-border-line: rgba(160, 178, 255, 0.18); --color-warn: #FFB84D;
+  background-color: #0A0F24;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.9) 50%, transparent 52%),
+    radial-gradient(1px 1px at 68% 7%, rgba(255,255,255,.8) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 83% 42%, rgba(255,244,214,.95) 50%, transparent 52%),
+    radial-gradient(1px 1px at 37% 63%, rgba(255,255,255,.7) 50%, transparent 52%),
+    radial-gradient(1px 1px at 91% 79%, rgba(214,226,255,.8) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 24% 88%, rgba(255,255,255,.85) 50%, transparent 52%),
+    radial-gradient(1px 1px at 55% 31%, rgba(255,255,255,.6) 50%, transparent 52%),
+    radial-gradient(1px 1px at 5% 52%, rgba(255,255,255,.65) 50%, transparent 52%),
+    radial-gradient(ellipse 60% 40% at 80% 0%, rgba(110, 80, 200, 0.22), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 0% 100%, rgba(40, 110, 200, 0.18), transparent 70%),
+    linear-gradient(180deg, #0A0F24 0%, #111A3A 55%, #0B1230 100%);
+  background-size: 180px 180px, 240px 240px, 310px 310px, 200px 200px, 270px 270px, 340px 340px, 150px 150px, 220px 220px, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed; }
+.tx-head h1 { letter-spacing: 0.01em; }
+.tx-head h1 span { color: var(--tx-accent); text-shadow: 0 0 12px rgba(242, 196, 109, 0.45); }
+.tx-tabs button[aria-selected="true"] { color: #FFFFFF; }
+.tx-control, .tx-t, .tx-card, .tx-evtile { box-shadow: 0 0 0 1px rgba(255,255,255,0.02), 0 6px 24px rgba(0, 0, 0, 0.35); backdrop-filter: blur(2px); }
+.tx-evtile .num, .tx-control .big { color: #FFFFFF; }
+.tx-control .big.d { color: var(--tx-d); } .tx-control .big.r { color: var(--tx-r); }
+.tx-seatbar .mid { background: #FFFFFF; }
+.tx-daypick button, .tx-seg button, .tx-tools input[type=search], .tx-tools button { background: rgba(18, 26, 58, 0.6); }
+.tx-daypick button[aria-pressed="true"], .tx-seg button[aria-pressed="true"] { background: var(--tx-accent); color: #0A0F24; }
+.tx-seg button:hover:not([aria-pressed="true"]) { background: rgba(242, 196, 109, 0.12); }
+.tx-tools button[aria-pressed="true"] { background: #E8ECFF; color: #0A0F24; border-color: #E8ECFF; }
+.tx-tbl th { background: #141C40; }
+.tx-tip { background: #141C40; color: #E8ECFF; box-shadow: 0 4px 16px rgba(0,0,0,.5); }
+.tx-notes { color: var(--tx-o); }
+.tx svg text { fill: #9AA6C8; }
 </style>
 
 <div class="tx">
@@ -346,8 +382,8 @@ dash.calc('chamber_house', {
     const item = (color, txt) => { const s = el('span'); const i = el('i'); i.style.background = color; s.append(i, document.createTextNode(txt)); return s; };
     lg.append(
       item('var(--tx-d)', 'D ' + (c.d_hold ? c.d_hold + ' not up, ' : '') + c.d_safe + ' uncontested, ' + c.d_won + ' won'),
-      item('#8FB0E3', 'D leading ' + c.d_lead),
-      item('#E7A39C', 'R leading ' + c.r_lead),
+      item('#3F6DB5', 'D leading ' + c.d_lead),
+      item('#A84A44', 'R leading ' + c.r_lead),
       item('var(--tx-r)', 'R ' + (c.r_hold ? c.r_hold + ' not up, ' : '') + c.r_safe + ' uncontested, ' + c.r_won + ' won'),
       el('span', null, c.pending + ' not yet reporting'));
     box.append(nums, bar, lg);
@@ -429,7 +465,7 @@ dash.calc('chamber_house', {
     const s22 = series(2022), s24 = series(2024);
     const s26 = {}; days26.forEach((d) => { const p = days26.find((x) => x.day === d.day - 1); s26[d.day] = daily ? (d.day === 1 ? d.total : p ? d.total - p.total : null) : d.total; });
     const d26 = (i) => { const a = days26.find((x) => x.day === i); if (a) return new Date(a.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); const t = new Date(2026, 9, 18 + i); return t.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); };
-    dtb.replaceChildren(...d3.range(1, 13).map((i) => { const tr = el('tr'); if (i === D) tr.style.background = '#F3EBE2'; const v = s26[i]; const pr = !!(days26.find((x) => x.day === i) || {}).partial; const cmp = (b) => (v != null && b && !pr ? sgn((v - b) / b * 100) : (pr ? 'posting' : '—')); tr.append(el('td', 'dist', 'Day ' + i), el('td', null, d26(i) + (pr ? ' (partial)' : '')), el('td', 'r', n(v)), el('td', 'r muted', n(s22[i])), el('td', 'r muted', n(s24[i])), el('td', 'r', cmp(s22[i])), el('td', 'r', cmp(s24[i]))); return tr; }));
+    dtb.replaceChildren(...d3.range(1, 13).map((i) => { const tr = el('tr'); if (i === D) tr.style.background = 'rgba(242,196,109,0.14)'; const v = s26[i]; const pr = !!(days26.find((x) => x.day === i) || {}).partial; const cmp = (b) => (v != null && b && !pr ? sgn((v - b) / b * 100) : (pr ? 'posting' : '—')); tr.append(el('td', 'dist', 'Day ' + i), el('td', null, d26(i) + (pr ? ' (partial)' : '')), el('td', 'r', n(v)), el('td', 'r muted', n(s22[i])), el('td', 'r muted', n(s24[i])), el('td', 'r', cmp(s22[i])), el('td', 'r', cmp(s24[i]))); return tr; }));
     document.getElementById('ev-chart-h').textContent = (daily ? 'Ballots cast each day' : 'Cumulative ballots') + ' by day of early voting, against 2022 and 2024';
     // county table
     document.getElementById('ev-county-h').textContent = 'By county, ' + (daily ? 'day ' + D + ' alone' : 'through day ' + D);
@@ -457,15 +493,15 @@ dash.calc('chamber_house', {
     const ticks = y.ticks(4); let lw = 0; const yt = svg.append('g');
     ticks.forEach((t) => { const tt = yt.append('text').attr('font-size', 11).text(fmtY(t)); lw = Math.max(lw, tt.node().getComputedTextLength()); tt.remove(); });
     m.l = lw + 10; x.range([m.l, W - m.r]);
-    ticks.forEach((t) => { svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(t)).attr('y2', y(t)).attr('stroke', '#E7E2D6'); svg.append('text').attr('x', m.l - 6).attr('y', y(t) + 4).attr('text-anchor', 'end').attr('font-size', 11).attr('fill', '#5D6673').text(fmtY(t)); });
-    svg.append('rect').attr('x', x(D) - x.step() * x.paddingInner() / 2).attr('width', x.step()).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', '#F3EBE2');
+    ticks.forEach((t) => { svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(t)).attr('y2', y(t)).attr('stroke', 'rgba(200,210,255,0.14)'); svg.append('text').attr('x', m.l - 6).attr('y', y(t) + 4).attr('text-anchor', 'end').attr('font-size', 11).attr('fill', '#9AA6C8').text(fmtY(t)); });
+    svg.append('rect').attr('x', x(D) - x.step() * x.paddingInner() / 2).attr('width', x.step()).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', 'rgba(242,196,109,0.14)');
     const g = svg.selectAll('g.bar').data(cur).enter().append('g').attr('opacity', (d) => (d.partial ? 0.4 : 1));
-    g.append('rect').attr('x', (d) => x(d.day)).attr('width', x.bandwidth()).attr('y', (d) => y(Math.max(0, d.total - d.mail))).attr('height', (d) => y(0) - y(Math.max(0, d.total - d.mail))).attr('fill', '#8C5A2B').attr('rx', 2);
-    g.append('rect').attr('x', (d) => x(d.day)).attr('width', x.bandwidth()).attr('y', (d) => y(d.total)).attr('height', (d) => Math.max(0, y(Math.max(0, d.total - d.mail)) - y(d.total))).attr('fill', '#C9A27A').attr('rx', 2);
+    g.append('rect').attr('x', (d) => x(d.day)).attr('width', x.bandwidth()).attr('y', (d) => y(Math.max(0, d.total - d.mail))).attr('height', (d) => y(0) - y(Math.max(0, d.total - d.mail))).attr('fill', '#F2C46D').attr('rx', 2);
+    g.append('rect').attr('x', (d) => x(d.day)).attr('width', x.bandwidth()).attr('y', (d) => y(d.total)).attr('height', (d) => Math.max(0, y(Math.max(0, d.total - d.mail)) - y(d.total))).attr('fill', '#9C8CFF').attr('rx', 2);
     const cx = (d) => x(d.day) + x.bandwidth() / 2;
     const drawLine = (pts, color, dash) => { if (!pts.length) return; svg.append('path').attr('d', d3.line().x(cx).y((d) => y(d.total))(pts)).attr('fill', 'none').attr('stroke', color).attr('stroke-width', 2).attr('stroke-dasharray', dash || null); svg.selectAll(null).data(pts).enter().append('circle').attr('cx', cx).attr('cy', (d) => y(d.total)).attr('r', 2.5).attr('fill', color); };
-    drawLine(l22, '#5D6673', '5 3'); drawLine(l24, '#011936');
-    dayList.forEach((dv) => svg.append('text').attr('x', x(dv) + x.bandwidth() / 2).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', '#5D6673').text(W < 520 && dv % 2 === 0 ? '' : 'Day ' + dv));
+    drawLine(l22, '#9AA6C8', '5 3'); drawLine(l24, '#E8ECFF');
+    dayList.forEach((dv) => svg.append('text').attr('x', x(dv) + x.bandwidth() / 2).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', '#9AA6C8').text(W < 520 && dv % 2 === 0 ? '' : 'Day ' + dv));
     const tip = el('div', 'tx-tip'); tip.hidden = true; chart.append(tip);
     svg.append('g').selectAll('rect').data(dayList).enter().append('rect').attr('x', (d) => x(d) - x.step() * x.paddingInner() / 2).attr('width', x.step()).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', 'transparent').style('cursor', (d) => (avail.includes(d) ? 'pointer' : 'default'))
       .on('click', (ev, dv) => { if (avail.includes(dv)) { evDay = dv; draw(); } })
@@ -473,7 +509,7 @@ dash.calc('chamber_house', {
       .on('mouseleave', () => { tip.hidden = true; });
     const lg = el('div', 'tx-legend'); const it = (cc, t) => { const sp = el('span'); const i = el('i'); i.style.background = cc; sp.append(i, document.createTextNode(t)); return sp; };
     const ln = (cc, t, dash) => { const sp = el('span'); const i = el('i'); i.style.cssText = 'background:none;height:0;align-self:center;border-top:2px ' + (dash ? 'dashed ' : 'solid ') + cc; sp.append(i, document.createTextNode(t)); return sp; };
-    lg.append(it('#8C5A2B', '2026 in person'), it('#C9A27A', '2026 mail'), ln('#5D6673', '2022', true), ln('#011936', '2024')); chart.append(lg);
+    lg.append(it('#F2C46D', '2026 in person'), it('#9C8CFF', '2026 mail'), ln('#9AA6C8', '2022', true), ln('#E8ECFF', '2024')); chart.append(lg);
   };
   const q = document.getElementById('house-q');
   q.addEventListener('input', () => { filt.q = q.value.trim().toLowerCase(); draw(); });
