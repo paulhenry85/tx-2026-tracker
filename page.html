@@ -350,20 +350,27 @@ dash.calc('chamber_house', {
     const rep = Number(r.reporting);
     return c > 0 && rep > 0 && rep < 100 ? Math.round(c / (rep / 100) - c) : null;
   };
+  const needTxt = (r, left) => {
+    if (r.status === 'Called' || !(left > 0)) return '';
+    const lead = (Number(r.dem_votes) || 0) - (Number(r.rep_votes) || 0);
+    if (!lead) return '';
+    const need = 50 + (Math.abs(lead) / left) * 50;
+    return need > 100 ? ' · out of reach' : ' · ' + (lead > 0 ? 'R' : 'D') + ' needs ' + need.toFixed(0) + '%';
+  };
   const tile = (r, label, sub) => {
     const t = el('div', 'tx-t'); const s = state(r); if (s.startsWith('won')) t.classList.add(s);
     const r1 = el('div', 'row1'); r1.append(el('span', 'd', label), el('span', 'st ' + s, shortStatus(r)));
     const names = el('div', 'names'); names.append(el('span', winCls(r, 'D'), r.dem ? last(r.dem) : '(no D)'), el('span', winCls(r, 'R'), r.rep ? last(r.rep) : '(no R)'));
     const nums = el('div', 'nums'); nums.append(el('span', 'dv', pct(r.dem_pct)), el('span', 'rv', pct(r.rep_pct)));
     const left = remaining(r);
-    t.append(r1, names, nums, mini(r), el('div', 'sub', left > 0 ? '~' + num(left) + ' left to count' : sub || ''));
+    t.append(r1, names, nums, mini(r), el('div', 'sub', left > 0 ? '~' + num(left) + ' left' + needTxt(r, left) : sub || ''));
     return t;
   };
   const row = (r, key, extra) => {
     const tr = el('tr'); const st = el('td'); st.append(el('span', 'tx-pill ' + state(r), r.contested === false && r.status === 'Pre-election' ? 'Uncontested' : r.status));
     tr.append(el('td', 'dist', key), el('td', winCls(r, 'D') || null, r.dem || '—'), el('td', winCls(r, 'R') || null, r.rep || '—'),
       el('td', 'r dv', pct(r.dem_pct)), el('td', 'r rv', pct(r.rep_pct)), el('td', 'r', sgn(r.margin)),
-      el('td', 'r', r.reporting == null || r.reporting === '' ? '—' : Number(r.reporting).toFixed(0) + '%'), st, ...extra);
+      el('td', 'r', (r.reporting == null || r.reporting === '' ? '—' : Number(r.reporting).toFixed(0) + '%') + (remaining(r) > 0 ? ' · ~' + num(remaining(r)) + ' left' + needTxt(r, remaining(r)) : '')), st, ...extra);
     return tr;
   };
   const control = (box, c, label) => {

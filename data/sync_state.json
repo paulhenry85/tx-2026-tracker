@@ -1,10 +1,1 @@
-{
- "statewide": "4ddc803ad3e1b8a997ce88a789673cf4",
- "senate": "0ce2c65bb9641c07541c0c94adc8e61b",
- "house": "c2b010aa9707ca9032aa95c4d7b4f848",
- "chambers": "f6643b0fbc4ea63f450c2bb5ebdca409",
- "tx_ev_counties": "cd89a9360796e0ef85619bd7f0fe6541",
- "tx_ev_days": "709856831f9de40c20c3676845271a61",
- "tx_ev_county_days": "46aa485c3372bfe0bdaaf897b00781bd",
- "tx_ev_history": "59869af679ec917f3f046344803996a0"
-}
+{"statewide": "4ddc803ad3e1b8a997ce88a789673cf4", "senate": "e0b4c1564128982d215d9264143e7ef4", "house": "37f9afcd3456761d089c876cb439ce90", "chambers": "f6643b0fbc4ea63f450c2bb5ebdca409", "tx_ev_counties": "cd89a9360796e0ef85619bd7f0fe6541", "tx_ev_days": "709856831f9de40c20c3676845271a61", "tx_ev_county_days": "46aa485c3372bfe0bdaaf897b00781bd", "tx_ev_history": "59869af679ec917f3f046344803996a0"}
